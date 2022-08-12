@@ -7,6 +7,10 @@ loss function如下图
 
 初步判断是经验回放池的容量太小，并未有完全利用已有经验
 
+作为对照，在十二个节点选十个放置位置时，loss function相对合理
+![26aa2553d2d7cff1cdac42d9017fe7f](https://user-images.githubusercontent.com/89006608/184332519-f1f04b80-8a6a-400e-9fc8-971a02e23e44.png)
+
+
 每一个回合所得max/min reward和total reward以及每一个episode下每一个state的max/min VDI，这里的VDI是指所有节点VDI之和
 
 ![950cdf11e920409b560e474efc6b3c4](https://user-images.githubusercontent.com/89006608/184324110-8aa11258-63aa-4f6a-87a1-21a121ba17ca.png)
