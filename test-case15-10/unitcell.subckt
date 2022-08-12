@@ -1,0 +1,28 @@
+*-- interposer unit cell
+*-- source: "Interposer Power Distribution Network (PDN) Modeling
+*--          Using a Segmentation Method for 3-D ICs with TSVs"
+
+
+.subckt int_unitcell leftp rightp lowerp upperp center rval=1m lval=1p cval=1f
+*rleft leftp leftm 'rval'
+*lleft leftm center 'lval'
+*lright center rightm 'lval'
+*rright rightm rightp 'rval'
+*rlower lowerp lowerm 'rval'
+*llower lowerm center 'lval'
+*lupper center upperm 'lval'
+*rupper upperm upperp 'rval'
+xrl_left leftp center sub_rl rvalue='rval' lvalue='lval'
+xrl_right center rightp sub_rl rvalue='rval' lvalue='lval'
+xrl_lower lowerp center sub_rl rvalue='rval' lvalue='lval'
+xrl_upper center upperp sub_rl rvalue='rval' lvalue='lval'
+ccenter center 0 'cval'
+.ends int_unitcell
+
+.subckt sub_rl p1 p2 rvalue=1m lvalue=1p
+rp1 p1 0 1e12
+r p1 m 'rvalue'
+l m p2 'lvalue'
+rp2 p2 0 1e12
+.ends sub_rl
+

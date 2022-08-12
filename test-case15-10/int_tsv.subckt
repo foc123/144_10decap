@@ -1,0 +1,6 @@
+*-- interposer tsv subckt model
+.subckt int_tsv pad bump rval=0.04 lval=38e-12 cval=0.24e-12
+rtsv pad mid 'rval'
+ltsv mid bump 'lval'
+cins mid 0 'cval'
+.ends int_tsv

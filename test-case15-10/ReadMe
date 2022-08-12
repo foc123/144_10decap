@@ -1,0 +1,38 @@
+[6/29/2022]
+
+This is a simple example to illustrate chiplet+interposer system's PDN
+model generation and simulation.
+
+
+To generate chiplet PDN netlist:  # change chiplet1 netlist
+$bin/diegen chiplet1.conf
+
+
+[NOTE] For now, the intentional decap density is set to 0 in the config file,
+so all the  intentional decap values are 0 (effectively no decap) in the
+generated netlist. This is used as the basis for decap optimization. Note in
+real case, there will be non-zero decaps.
+
+
+To generate interposer PDN netlist:
+$bin/intgen int1.conf
+
+To create randomly placed decaps:
+$bin/diedcapgen 10 1e-9 chiplet1_vdd.decap vdd_decap.1
+
+[NOTE] Ten decaps whose values are 1nF are generated in file "vdd_decap.1".
+Note you need to manually include this file in the chiplet's subckt
+"chiplet1_tr.subckt". Later, this step can be performed by a python script.
+
+To run spice for transient simulation:
+$ngspice -b interposer1_tr.sp -r interposer1_tr.raw
+
+To extract VDI from transient simulation result:
+$bin/inttrvmap int1.conf interposer1_tr.raw 1.0 0.05
+
+To get chiplet VDI info:
+$python3 utils/prvdi.py chiplet1_vdd_1_vdi.csv
+
+To plot chiplet VDI map:
+$python utils/pltvdroopint.py chiplet1_vdd_1_vdi.csv
+

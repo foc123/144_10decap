@@ -1,0 +1,12 @@
+*-- define pcb subckt model
+.subckt pcb_model in out
+rs_pcb in middle 0.18m
+ls_pcb middle out 40p
+
+*-- decap on board
+*rp_pcb middle middle1 1m
+*lp_pcb middle1 middle2 6p
+*cp_pcb middle2 0 0.5u
+*lp_pcb middle1 middle2 1p
+*cp_pcb middle2 0 0.1u
+.ends pcb_model

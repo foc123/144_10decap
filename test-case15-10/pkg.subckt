@@ -1,0 +1,10 @@
+*-- pkg subckt model
+.subckt pkg_model in out
+rs in middle1 0.1m
+ls middle1 out 10e-12
+
+*-- pkg decap
+*rp middle1 middle2 0.001
+*lp middle2 middle3 2.3e-12
+*cp middle3 0 1.6e-08
+.ends pkg_model
